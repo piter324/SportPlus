@@ -1,0 +1,36 @@
+body
+{
+	margin:0;
+	background-color: #ddd;
+}
+.container-fluid
+{
+	padding:0;
+}
+.jumbotron
+{
+	border-radius: 0;
+	background-color: #fff;
+	text-align: center;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	box-shadow: 0px 0px 20px 0px #888;
+}
+footer
+{
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	text-align: center;
+}
+#chooser, #info
+{
+	background-color: #fff;
+	margin-top: 2rem;
+	padding:1rem;
+	border-radius: 5px;
+	border:1px solid #CCC;
+}
+#info
+{
+	/*display: none;*/
+}
