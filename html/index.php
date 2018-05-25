@@ -29,7 +29,7 @@
 			    <p class="card-text">Dostępne informacje: </p>
 			    <ul>
 			    	<li>ile jest zarezerwowanych / sprzedanych biletów na daną imprezę</li>
-			    	<li>ile rezerwacji na imprezę wygaśnie w ciągu najbliższych minut</li>
+			    	<li>ile rezerwacji na imprezę wygaśnie przed podaną datą</li>
 			    </ul>
 			    <a href="sales.php" class="btn btn-primary">Przejdź &rarr;</a>
 			  </div>

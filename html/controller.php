@@ -48,11 +48,11 @@ switch ($url[0]) {
 				echo json_encode($output);
 			break;
 			case 'discountsForEventsForCustomerTypes':
-				$output = $income->discountsForEventsForCustomerTypes();
+				$output = $income->discountsForEventsForCustomerTypes($url[2],$url[3]);
 				echo json_encode($output);
 			break;
 			case 'incomeFromEvents':
-				$output = $income->incomeFromEvents();
+				$output = $income->incomeFromEvents($url[2],$url[3]);
 				echo json_encode($output);
 			break;
 			case 'incomeByPaymentMethods':

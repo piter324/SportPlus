@@ -22,7 +22,7 @@ footer
 	margin-bottom: 2rem;
 	text-align: center;
 }
-#chooser, #info
+#chooser, .info
 {
 	background-color: #fff;
 	margin-top: 2rem;
@@ -30,7 +30,7 @@ footer
 	border-radius: 5px;
 	border:1px solid #CCC;
 }
-#info
+.info
 {
-	/*display: none;*/
+	display: none;
 }

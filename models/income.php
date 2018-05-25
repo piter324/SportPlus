@@ -27,10 +27,10 @@
             return $forReturn;
         }
 
-        function discountsForEventsForCustomerTypes()
+        function discountsForEventsForCustomerTypes($startDate,$endDate)
         {
             $forReturn = array();
-            $query = "SELECT impreza.nazwa AS 'event_name', klient.typ_klienta_nazwa, SUM(cena_biletu.cena-kwota) as 'discount' FROM transakcja INNER JOIN bilet ON bilet.id = transakcja.id INNER JOIN cena_biletu ON (bilet.miejsce_litera = cena_biletu.sektor_litera AND bilet.impreza_id = cena_biletu.impreza_id) INNER JOIN klient ON transakcja.klient_id = klient.id INNER JOIN impreza ON bilet.impreza_id = impreza.id WHERE cena_biletu.cena-kwota>0 GROUP BY impreza.nazwa,klient.typ_klienta_nazwa ORDER BY impreza.nazwa, klient.typ_klienta_nazwa";
+            $query = "SELECT impreza.nazwa AS 'event_name', klient.typ_klienta_nazwa, SUM(cena_biletu.cena-kwota) as 'discount' FROM transakcja INNER JOIN bilet ON bilet.id = transakcja.id INNER JOIN cena_biletu ON (bilet.miejsce_litera = cena_biletu.sektor_litera AND bilet.impreza_id = cena_biletu.impreza_id) INNER JOIN klient ON transakcja.klient_id = klient.id INNER JOIN impreza ON bilet.impreza_id = impreza.id WHERE transakcja.data_platnosci IS NOT NULL AND cena_biletu.cena-kwota>0 AND impreza.data_rozpoczecia>='".$startDate."' AND impreza.data_zakonczenia<='".$endDate."' GROUP BY impreza.nazwa,klient.typ_klienta_nazwa ORDER BY impreza.nazwa, klient.typ_klienta_nazwa";
             if($result = $this->mysqli->query($query))
             {
                 $forReturn['status']="Success";
@@ -60,10 +60,10 @@
             return $forReturn;
         }
 
-        function incomeFromEvents()
+        function incomeFromEvents($startDate,$endDate)
         {
             $forReturn = array();
-            $query = "SELECT impreza.nazwa AS 'impreza_nazwa',SUM(kwota) AS 'income' FROM transakcja INNER JOIN bilet ON bilet.id = transakcja.id INNER JOIN impreza ON bilet.impreza_id = impreza.id WHERE data_platnosci IS NOT NULL GROUP BY impreza.nazwa";
+            $query = "SELECT impreza.nazwa AS 'impreza_nazwa',SUM(kwota) AS 'income' FROM transakcja INNER JOIN bilet ON bilet.id = transakcja.id INNER JOIN impreza ON bilet.impreza_id = impreza.id WHERE data_platnosci IS NOT NULL AND impreza.data_rozpoczecia>='".$startDate."' AND impreza.data_zakonczenia<='".$endDate."' GROUP BY impreza.nazwa";
             if($result = $this->mysqli->query($query))
             {
                 $forReturn['status']="Success";
